@@ -45,7 +45,7 @@ startGame = () => {
 }
 
 // baza filmów i losowanie hasła
-const movieTitles = ["od zmierzchu do świtu", "pulp fiction", "szeregowiec syan"];
+const movieTitles = ["od zmierzchu do świtu", "przeminęło z wiatrem", "lot nad kukułczym gniazdem", "szeregowiec ryan", "skazani na shawshank", "chłopcy z ferajny", "milczenie owiec"];
 let randomWord = [...movieTitles[Math.floor(Math.random() * movieTitles.length)]];
 let currentWord = [];
 
