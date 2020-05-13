@@ -17,12 +17,14 @@
 .result{
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
+    /* flex-wrap: wrap; */
+    margin: 2rem;
     min-height: 3rem;
 }
 .letter{
     text-align: center;
     width: 2rem;
+    height: 2rem;
     margin: .4rem;
     border-bottom: 1px solid black;
     font-size: 1.75rem;
@@ -47,7 +49,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 4rem;
+    padding: 2rem;
 }
 .btn{
     display: flex;
@@ -79,8 +81,8 @@
     border-color: rgb(145, 145, 145);
     background-color: rgb(145, 145, 145);
 }
-.reset{
-    margin-top: 4rem;
+.game-start{
+    margin-top: 2rem;
     text-align: center;
 }
 .start{
@@ -101,4 +103,98 @@
 .start-disabled{
     cursor: default;
 }
+.game-description{
+    text-align: center;
+    text-transform: uppercase;
+    padding: 1rem;
+    font-size: 1.6rem;
+}
+.game-lost{
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 1rem 0;
+    font-size: 1.4rem;
+    color: darkred;
+}
+.game-won{
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 1rem 0;
+    font-size: 1.4rem;
+    color: green;
+}
+.btn-playagain{
+    margin-left: 2rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    background-color: black;
+    border: 0.1rem solid black;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.btn-playagain:hover{
+    background-color: white;
+    /* color: black; */
+}
+.btn-playagain:hover .game-link{
+    color: black;
+}
+.game-link{
+    color: white;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+/* // Medium devices (tablets, 768px and up) */
+@media (max-width: 768px) { 
+    .title{
+        line-height: 3.4rem;
+    }
+    .result{
+        margin: 1rem 1rem 0;
+        min-height: 2rem;
+    }
+    .letter {
+        text-align: center;
+        width: 1rem;
+        height: 1.3rem;
+        margin: .1rem;
+        /* border-bottom: 1px solid black; */
+        font-size: 1.25rem;
+        text-transform: uppercase;
+    }
+    .game-container{
+        flex-direction: column;
+    }
+    .hangmanPic{
+        height: 15rem;
+    }
+    .keyboard{
+        padding: 2rem 1rem 1rem;
+    }
+    .btn {
+        width: 2rem;
+        height: 2rem;
+        margin: 0.2rem;
+        font-size: 1.2rem;
+    }
+    .game-start{
+        margin-top: 1rem;
+    }
+    .start{
+        font-size: 1.2rem;
+    }
+    .game-description{
+        font-size: 1.2rem;
+    }
+    .game-lost, .game-won{
+        font-size: 1.2rem;
+    }
+    .btn-playagain{
+        margin-left: 1rem;
+        font-size: 1rem;
+    }
+ }
 
