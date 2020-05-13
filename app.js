@@ -1,4 +1,8 @@
 const keyboard = document.querySelector(".keyboard");
+const start = document.querySelector(".start");
+const gameStart = document.querySelector(".game-start");
+const result = document.querySelector(".result");
+const hangmanPic = document.querySelector(".hangmanPic");
 const alphabet = ["a", "ą", "b", "c", "ć", "d", "e", "ę", "f", "g", "h", "i", "j", "k", "l", "ł", "m", "n", "ń",
     "o", "ó", "p", "q", "r", "s", "ś", "t", "u", "w", "x", "y", "z", "ź", "ż"];
 // baza filmów i losowanie hasła
@@ -8,10 +12,12 @@ const movieTitles = ["Od zmierzchu do świtu", "Przeminęło z wiatrem", "Szereg
 let randomMovie = movieTitles[Math.floor(Math.random() * movieTitles.length)];
 let randomWord = [...randomMovie.toUpperCase()];
 let currentWord = [];
+let mistakes = 0;
+const maxWrong = 7;
 
-// dodanie przycisków z literami alfabetu
+// stworzenie przycisków z literami alfabetu
 alphabet.forEach(letter => {
-    let buttonHTML = document.createElement("button");
+    const buttonHTML = document.createElement("button");
     buttonHTML.setAttribute("class", "btn btn-disabled");
     buttonHTML.setAttribute("data-id", letter.toUpperCase());
     buttonHTML.innerText = letter;
@@ -32,12 +38,11 @@ buttonsHTML.forEach(item => {
 })
 
 // główna funkcja gry odpalana po naciśnięciu buttona "start game"
-const start = document.querySelector(".start");
 start.addEventListener("click", () => {
     startGame();
 });
 
-// uruchomienie klikania przycisków
+// uruchomienie i zablokowanie klikania przycisków
 enableButtonsHTML = () => {
     buttonsHTML.forEach(item => {
         item.disabled = false;
@@ -52,7 +57,6 @@ disableButtonsHTML = () => {
 }
 
 // funkcja uruchomiająca grę
-const gameStart = document.querySelector(".game-start");
 startGame = () => {
     randomSentence();
     enableButtonsHTML();
@@ -71,7 +75,6 @@ letterSpaceCount = () => {
 
 // tworzenie pola dla hasła 
 randomSentence = () => {
-    const result = document.querySelector(".result");
     result.innerText = "";
     randomWord.forEach(item => {
         const spanResult = document.createElement("span");
@@ -100,9 +103,6 @@ checkLetter = (letter) => {
 }
 
 // podmiana obrazka hangmana
-let mistakes = 0;
-const maxWrong = 6;
-const hangmanPic = document.querySelector(".hangmanPic");
 hangmanUpdate = () => {
     mistakes++;
     hangmanPic.setAttribute("src", `images/${mistakes}.jpg`);
@@ -115,13 +115,12 @@ hangmanUpdate = () => {
 gameOver = () => {
     mistakes = 0;
     disableButtonsHTML();
-    console.log("game over");
     document.querySelector(".game-description").remove();
     gameStart.innerHTML = `<h3 class="game-lost">Przegrałeś :(
-        <button class="btn-playagain">
-            <a class="game-link" href="index.html">jeszcze raz?</a>
-        </button>
-    </h3>`;
+          <button class="btn-playagain">
+                <a class="game-link" href="index.html">jeszcze raz?</a>
+          </button>
+        </h3>`;
 }
 
 // wygranie gry i restart
@@ -129,10 +128,10 @@ checkIfGameWon = () => {
     if (currentWord.length + letterSpaceCounter === randomWord.length) {
         document.querySelector(".game-description").remove();
         gameStart.innerHTML = `<h3 class="game-won">Brawo! :)
-        <button class="btn-playagain">
-            <a class="game-link" href="index.html">jeszcze raz?</a>
-        </button>
-    </h3>`;
+            <button class="btn-playagain">
+                <a class="game-link" href="index.html">jeszcze raz?</a>
+            </button>
+        </h3>`;
     }
 }
 
